@@ -37,6 +37,15 @@ public class classes {
     public String getimageUrl() {
         return this.imageUrl;
     }
+    private String description;
+
+    public void setdescription(String setValue) {
+        this.description = setValue;
+    }
+
+    public String getdescription() {
+        return this.description;
+    }
 
     public JSONObject toJSON() {
 
@@ -44,6 +53,7 @@ public class classes {
         jo.put("imageName", this.imageName); 
         jo.put("imageId", this.imageId); 
         jo.put("imageUrl", this.imageUrl); 
+        jo.put("description", this.description); 
 
         return jo;
     }
@@ -53,6 +63,7 @@ public class classes {
         this.imageName = (String) jsonObject.get("imageName"); 
         this.imageId = ((Long) jsonObject.get("imageId")).intValue(); 
         this.imageUrl = (String) jsonObject.get("imageUrl"); 
+        this.description = (String) jsonObject.get("description"); 
 
     }
 
