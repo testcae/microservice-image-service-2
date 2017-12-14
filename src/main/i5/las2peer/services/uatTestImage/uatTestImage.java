@@ -177,7 +177,6 @@ public class uatTestImage extends RESTService {
       JSONObject result = new JSONObject(); 
       return Response.status(HttpURLConnection.HTTP_INTERNAL_ERROR).entity(result.toJSONString()).build();
     }
-  }
 
   }
 
