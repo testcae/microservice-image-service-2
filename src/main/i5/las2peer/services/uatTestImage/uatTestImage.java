@@ -88,7 +88,66 @@ public class uatTestImage extends RESTService {
 
     private final uatTestImage service = (uatTestImage) Context.getCurrent().getService();
 
-    
+      /**
+   * 
+   * postImage
+   *
+   * 
+   * @param imagePayload  a JSONObject
+   * 
+   * @return Response 
+   * 
+   */
+  @POST
+  @Path("/post")
+  @Produces(MediaType.TEXT_PLAIN)
+  @Consumes(MediaType.TEXT_PLAIN)
+  @ApiResponses(value = {
+       @ApiResponse(code = HttpURLConnection.HTTP_OK, message = "postImageResponse")
+  })
+  @ApiOperation(value = "postImage", notes = " ")
+  public Response postImage(String imagePayload) {
+    JSONObject imagePayload_JSON = (JSONObject) JSONValue.parse(imagePayload);
+
+    // postImageResponse
+    boolean postImageResponse_condition = true;
+    if(postImageResponse_condition) {
+      String imageId = "Some String";
+      return Response.status(HttpURLConnection.HTTP_OK).entity(imageId).build();
+    }
+    return null;
+  }
+
+  /**
+   * 
+   * getImage
+   *
+   * 
+   *
+   * 
+   * @return Response 
+   * 
+   */
+  @GET
+  @Path("/image")
+  @Produces(MediaType.APPLICATION_JSON)
+  @Consumes(MediaType.TEXT_PLAIN)
+  @ApiResponses(value = {
+       @ApiResponse(code = HttpURLConnection.HTTP_OK, message = "getImageResponse")
+  })
+  @ApiOperation(value = "getImage", notes = " ")
+  public Response getImage() {
+
+    // getImageResponse
+    boolean getImageResponse_condition = true;
+    if(getImageResponse_condition) {
+      JSONObject resultImage = new JSONObject();
+      return Response.status(HttpURLConnection.HTTP_OK).entity(resultImage.toJSONString()).build();
+    }
+    return null;
+  }
+
+
 
   }
 
