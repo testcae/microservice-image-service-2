@@ -77,9 +77,9 @@ public class uatTestImage extends RESTService {
 
   @Api
   @SwaggerDefinition(
-      info = @Info(title = "image-service-2", version = "",
-          description = "",
-          termsOfService = "",
+      info = @Info(title = "image-service-2", version = "1.0",
+          description = "Service to save and get image for music list",
+          termsOfService = "LICENSE.txt",
           contact = @Contact(name = "Melisa Cecilia", email = "CAEAddress@gmail.com") ,
           license = @License(name = "BSD",
               url = "https://github.com/testcae/microservice-image-service-2/blob/master/LICENSE.txt") ) )
@@ -95,7 +95,7 @@ public class uatTestImage extends RESTService {
    * 
    *
    * 
-   * @return Response 
+   * @return Response Response get image will return image list
    * 
    */
   @GET
@@ -103,7 +103,7 @@ public class uatTestImage extends RESTService {
   @Produces(MediaType.APPLICATION_JSON)
   @Consumes(MediaType.TEXT_PLAIN)
   @ApiResponses(value = {
-       @ApiResponse(code = HttpURLConnection.HTTP_OK, message = "responseGetImage")
+       @ApiResponse(code = HttpURLConnection.HTTP_OK, message = "Response get image will return image list")
   })
   @ApiOperation(value = "getImage", notes = " ")
   public Response getImage() {
@@ -111,7 +111,7 @@ public class uatTestImage extends RESTService {
     // responseGetImage
     boolean responseGetImage_condition = true;
     if(responseGetImage_condition) {
-      JSONObject resultGetImage = new JSONObject();
+      JSONObject resultGetImage = new classes().new image().toJSON();
       return Response.status(HttpURLConnection.HTTP_OK).entity(resultGetImage.toJSONString()).build();
     }
     return null;
@@ -122,9 +122,9 @@ public class uatTestImage extends RESTService {
    * postImage
    *
    * 
-   * @param payloadPostImage  a JSONObject
+   * @param payloadPostImage Payload post image needs image object a JSONObject
    * 
-   * @return Response 
+   * @return Response Response post image, image id
    * 
    */
   @POST
@@ -132,12 +132,18 @@ public class uatTestImage extends RESTService {
   @Produces(MediaType.TEXT_PLAIN)
   @Consumes(MediaType.TEXT_PLAIN)
   @ApiResponses(value = {
-       @ApiResponse(code = HttpURLConnection.HTTP_OK, message = "responsePostImage")
+       @ApiResponse(code = HttpURLConnection.HTTP_OK, message = "Response post image, image id")
   })
   @ApiOperation(value = "postImage", notes = " ")
   public Response postImage(String payloadPostImage) {
-    JSONObject payloadPostImage_JSON = (JSONObject) JSONValue.parse(payloadPostImage);
-
+   classes.image payloadpayloadPostImageObject = new classes().new image();
+   try { 
+       payloadpayloadPostImageObject.fromJSON(payloadPostImage);
+   } catch (Exception e) { 
+       e.printStackTrace();
+       JSONObject result = new JSONObject();
+       return Response.status(HttpURLConnection.HTTP_INTERNAL_ERROR).entity("Cannot convert json to object").build();
+   }
     // responsePostImage
     boolean responsePostImage_condition = true;
     if(responsePostImage_condition) {
