@@ -108,13 +108,27 @@ public class uatTestImage extends RESTService {
   @ApiOperation(value = "getImage", notes = " ")
   public Response getImage() {
 
-    // responseGetImage
-    boolean responseGetImage_condition = true;
-    if(responseGetImage_condition) {
-      JSONObject resultGetImage = new classes().new image().toJSON();
-      return Response.status(HttpURLConnection.HTTP_OK).entity(resultGetImage.toJSONString()).build();
+    // getImageResponse
+    try { 
+        Connection conn = service.dbm.getConnection();
+        PreparedStatement query = conn.prepareStatement("SELECT * FROM uatTest.tblImage");
+        ResultSet result = query.executeQuery();
+        JSONArray jsonResult = new JSONArray();
+        while(result.next()) {
+          classes.image imageResult = new classes().new image();
+          imageResult.setimageName(result.getString("imageName"));
+          imageResult.setimageUrl(result.getString("imageUrl"));
+          imageResult.setimageId(result.getInt("imageId"));
+          jsonResult.add(imageResult.toJSON());
+        }
+        // responseGetImage
+        return Response.status(HttpURLConnection.HTTP_OK).entity(jsonResult.toJSONString()).build();
+    } catch(Exception e) {
+      e.printStackTrace();
+      JSONObject result = new JSONObject(); 
+      return Response.status(HttpURLConnection.HTTP_INTERNAL_ERROR).entity(result.toJSONString()).build();
     }
-    return null;
+
   }
 
   /**
