@@ -95,7 +95,7 @@ public class uatTestImage extends RESTService {
    * 
    *
    * 
-   * @return Response Response get image will return image list
+   * @return Response Response Get
    * 
    */
   @GET
@@ -103,7 +103,7 @@ public class uatTestImage extends RESTService {
   @Produces(MediaType.APPLICATION_JSON)
   @Consumes(MediaType.TEXT_PLAIN)
   @ApiResponses(value = {
-       @ApiResponse(code = HttpURLConnection.HTTP_OK, message = "Response get image will return image list")
+       @ApiResponse(code = HttpURLConnection.HTTP_OK, message = "Response Get")
   })
   @ApiOperation(value = "getImage", notes = " ")
   public Response getImage() {
@@ -136,9 +136,9 @@ public class uatTestImage extends RESTService {
    * postImage
    *
    * 
-   * @param payloadPostImage Payload post image needs image object a JSONObject
+   * @param payloadPost Payload post image a JSONObject
    * 
-   * @return Response Response post image, image id
+   * @return Response 
    * 
    */
   @POST
@@ -146,13 +146,13 @@ public class uatTestImage extends RESTService {
   @Produces(MediaType.TEXT_PLAIN)
   @Consumes(MediaType.TEXT_PLAIN)
   @ApiResponses(value = {
-       @ApiResponse(code = HttpURLConnection.HTTP_OK, message = "Response post image, image id")
+       @ApiResponse(code = HttpURLConnection.HTTP_OK, message = "responsePost")
   })
   @ApiOperation(value = "postImage", notes = " ")
-  public Response postImage(String payloadPostImage) {
-   classes.image payloadpayloadPostImageObject = new classes().new image();
+  public Response postImage(String payloadPost) {
+   classes.image payloadpayloadPostObject = new classes().new image();
    try { 
-       payloadpayloadPostImageObject.fromJSON(payloadPostImage);
+       payloadpayloadPostObject.fromJSON(payloadPost);
    } catch (Exception e) { 
        e.printStackTrace();
        JSONObject result = new JSONObject();
