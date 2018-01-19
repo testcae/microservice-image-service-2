@@ -57,35 +57,6 @@ public class classes {
     }
 
 }
-    class newSchema {
-
-    public newSchema() {}
-    
-    private String testProperty;
-
-    public void settestProperty(String setValue) {
-        this.testProperty = setValue;
-    }
-
-    public String gettestProperty() {
-        return this.testProperty;
-    }
-
-    public JSONObject toJSON() {
-
-        JSONObject jo = new JSONObject();
-        jo.put("testProperty", this.testProperty); 
-
-        return jo;
-    }
-
-    public void fromJSON(String jsonString) throws ParseException {
-        JSONObject jsonObject = (JSONObject) JSONValue.parseWithException(jsonString);
-        this.testProperty = (String) jsonObject.get("testProperty"); 
-
-    }
-
-}
 
     
 }
